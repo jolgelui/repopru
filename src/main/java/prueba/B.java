@@ -18,7 +18,7 @@ public class B {
 			Arrays.asList("Diez", "Once", "Doce", "4"),
 			Arrays.asList("Trece", "Catorce", "Quince", "5"),
 			Arrays.asList("Dieciseis", "Diecisiete", "Dieciocho", "6"),
-			Arrays.asList("Diecinueve", "Veinte", "Veintiuno", "7"));
+			Arrays.asList("Diecinueve", "Veinte", "Veintiunooo", "7"));
 	
 	private List<String> temas = Arrays.asList( "afterdark", "afternoon", "afterwork", "black-tie", 
 			"blitzer", "bluesky", "casablanca", "cruze", "cupertino", "dark-hive", "dot-luv", "eggplant", "excite-bike", 
