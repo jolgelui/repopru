@@ -1,0 +1,110 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+xmlns:h="http://xmlns.jcp.org/jsf/html"
+xmlns:f="http://xmlns.jcp.org/jsf/core"
+template="/templates/MainTemplate.xhtml"
+xmlns:components="http://xmlns.jcp.org/jsf/composite/components"
+xmlns:p="http://primefaces.org/ui">
+
+	
+	<ui:define name="body">
+		<h:form prependId="false">
+			<br/>
+			
+			<p:fieldset legend="Pruebas Primefaces">
+				<p:tabView activeIndex="1" effect="fade" dynamic="true">
+					<p:tab title="Number Inputs">				
+						Fecha: <p:calendar showOn="focus" showButtonPanel="true" 
+						showOtherMonths="true" effect="fade" navigator="true"/><br/><br/>
+						
+						Spinner: <p:spinner prefix="RD$" min="0" max="99999" value="#{b.numero}"></p:spinner><br/><br/>
+						
+						Slider: <h:outputText value="#{b.numero}" id="ot1" style="margin-left:px;"/>
+						<p:slider display="ot1" for="txt" style="width:200px;" maxValue="99" minValue="1" ></p:slider>
+						<h:inputHidden id="txt" value="#{b.numero}"></h:inputHidden><br/><br/>
+						
+						Rating: <p:rating stars="6"></p:rating><br/>
+						Rating(Readonly): <p:rating stars="4"  value="3" readonly="true"></p:rating>
+					</p:tab>
+					<p:tab title="String Inputs">
+						Búsqueda: <p:autoComplete value="#{autoCompleteBean.opt}" 
+						completeMethod="#{autoCompleteBean.filter}" forceSelection="true" ></p:autoComplete>
+						<br/><br/>
+						Búsqueda 2: <p:autoComplete value="#{autoCompleteBean.opt2}" 
+						completeMethod="#{autoCompleteBean.filter}"
+						queryDelay="500" minQueryLength="2"></p:autoComplete>
+						<br/><br/>
+						Teléfono: <p:inputMask mask="(999) 999-9999" slotChar="x"></p:inputMask>
+						<br/><br/>
+						Color: <p:colorPicker id="cp" value="#{string2Bean.color}"></p:colorPicker><h:outputText id="ot" value="#{string2Bean.color}"></h:outputText>
+						
+						Inplace: <p:inplace><p:inputText value="queloque" id="it1"></p:inputText> </p:inplace>
+						<p:message for="it1" id="mIt1" showSummary="true"></p:message>
+						<p:growl id="gIt1" sticky="false"></p:growl>
+						
+						Pass: <p:password feedback="true"></p:password> <br/>
+						<p:editor></p:editor>					
+					</p:tab>
+					<p:tab title="Panels">
+						<p:panelGrid columns="2">						
+							<f:facet name="header">Prueba Panel Grid</f:facet>
+							Texto 1: <p:inputText></p:inputText>
+							Texto 2: <p:inputText></p:inputText>
+							Texto 3: <p:inputText></p:inputText>
+						</p:panelGrid>
+					</p:tab>
+					<p:tab title="Data Table">
+						<br />
+						<p:dataTable value="#{b.strings}" var="str" paginator="true" rows="5" 
+						draggableColumns="true" draggableRows="true" selectionMode="single" selection="#{b.tableSelection}"
+						resizableColumns="true" rowKey="#{str}">
+							<f:facet name="header">Prueba Data Table</f:facet>
+							
+					        <p:column style="width:16px">
+					            <p:rowToggler />
+					        </p:column>
+					        <p:rowExpansion>
+					        	<h:outputText value="FLDSMDFR"></h:outputText>
+					        </p:rowExpansion>
+					        
+							<p:column headerText="Columna 1">#{str[3]}</p:column>
+							<p:column headerText="Columna 2" >#{str[0]}</p:column>
+							<p:column headerText="Columna 3" >#{str[1]}</p:column>
+							<p:column headerText="Columna 4" >#{str[2]}</p:column>
+						</p:dataTable>
+					</p:tab>
+					<p:tab title="Charts">
+						<p:chart type="pie" model="#{chartsBean.pcm1}" responsive="true"></p:chart><br />
+						<p:chart type="line" model="#{chartsBean.lcm}" responsive="true"></p:chart><br />
+					</p:tab>
+					<p:tab title="Charts 2">
+						<p:chart type="bar" model="#{chartsBean.bcm}" responsive="true"></p:chart>	
+						<p:chart type="line" model="#{chartsBean.lcm2}" responsive="true"></p:chart>					
+					</p:tab>
+				</p:tabView>
+					<br/><br/>
+					Autoincrementa:<h:outputText value="#{b.autoInc}" id="ai"></h:outputText>
+			</p:fieldset>
+			<br /><br />
+			
+			<p:ajaxStatus>
+				<f:facet name="start">
+					<h:graphicImage library="images" name="ajax-loader pacman.gif" style="display:inline;"></h:graphicImage>
+				</f:facet>
+				<f:facet name="complete"><h:outputText></h:outputText> </f:facet>
+			</p:ajaxStatus>
+			
+			<p:commandButton action="#{b.action}" value="Boton" update="@form" process="@form" id="btn1"></p:commandButton>			
+			<p:tooltip for="btn1" value="Dale"></p:tooltip>
+			<p:commandButton value="Cont" action="#{b.toPruebas2}"></p:commandButton>
+			
+			<p:commandButton value="Dialog CC" onclick="PF('dialog1').show()"></p:commandButton>
+			
+			<p:dialog widgetVar="dialog1" resizable="false" modal="true" hideEffect="slide" 
+			showEffect="fade" draggable="false" header="Dialog Composite Component">
+				<components:comp1 value="valor2:" value2="n.n"></components:comp1>			
+			</p:dialog>
+						
+		</h:form>
+	</ui:define>
+</ui:composition>

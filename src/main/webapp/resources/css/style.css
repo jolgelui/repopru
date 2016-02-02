@@ -1,0 +1,21 @@
+@CHARSET "ISO-8859-1";
+.bodyClass{
+	background-image: url("/prueba/resources/images/black background.jpg"); 
+  -webkit-background-size: inherit;
+  -moz-background-size: inherit;
+  -o-background-size: inherit;
+  background-size: inherit;
+  
+	background-position:100%;
+	background-repeat:no-repeat;
+	background-attachment:fixed;
+	
+	color: white;
+	
+	font-family: arial, helvetica, sans-serif;	
+}
+.contentclass{
+	
+	margin: 3% 11% 11% 11%;
+}
+
